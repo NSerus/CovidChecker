@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ShowIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_checklist"
+            android:icon="@drawable/ic_check_24dp"
+            android:title="CheckList" />
+
+        <item
+            android:id="@+id/nav_covid"
+            android:icon="@drawable/ic_add_30dp"
+            android:title="Covid" />
+        <item
+            android:id="@+id/nav_solidao"
+            android:icon="@drawable/ic_person_24dp"
+            android:title="Solidao" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings_24dp"
+            android:title="Settings" />
+
+        <item
+            android:id="@+id/nav_info"
+            android:icon="@drawable/ic_info_24dp"
+            android:title="Information" />
+    </group>
+
+
+</menu>
