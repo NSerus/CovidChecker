@@ -4,6 +4,7 @@ public class Categoria {
     private long id = -1;
     private String descricao;
 
+    //Sets e Gets dos parametros
     public long getId() {
         return id;
     }

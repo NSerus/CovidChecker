@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 public class Converte {
+    //Converte os valores das classes para guardar valores de forma que o ContentResolver consiga processar.
+    //E o ContentResolver provide acesso de Conteudo para o modelo de conteudo usado.
     public static ContentValues categoriaToContentValues(Categoria categoria) {
         ContentValues valores = new ContentValues();
 

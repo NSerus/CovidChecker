@@ -1,5 +1,7 @@
 package com.boom.covidchecker;
 
+import java.util.Date;
+
 public class Item {
     private long id = -1;
     private String conteudo;

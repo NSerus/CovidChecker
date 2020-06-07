@@ -5,8 +5,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
+import java.util.Date;
+
 public class BdTableItems implements BaseColumns {
     public static final String NOME_TABELA = "items";
+
+
+    //todo: adicionar uma data como parametro
 
     public static final String CAMPO_CONTEUDO = "conteudo";
     public static final String CAMPO_CATEGORIA = "categoria";

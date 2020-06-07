@@ -13,10 +13,12 @@ public class BdTableCategorias implements BaseColumns {
 
     private SQLiteDatabase db;
 
+
     public BdTableCategorias(SQLiteDatabase db) {
         this.db = db;
     }
 
+    //Cria tabela de categoria c todas os campos
     public void cria() {
         db.execSQL(
                 "CREATE TABLE " + NOME_TABELA + " (" +
@@ -25,24 +27,24 @@ public class BdTableCategorias implements BaseColumns {
                         ")");
     }
 
-    //INSERE
+    //INSERE valores na BD
     public long insert(ContentValues values) {
         return db.insert(NOME_TABELA, null, values);
     }
 
-    //PROCURA
+    //PESQUISA na bd por varios parametros
     public Cursor query(String[] columns, String selection,
                         String[] selectionArgs, String groupBy, String having,
                         String orderBy) {
         return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy);
     }
 
-   //UPDATA
+   //UPDATE todos os parametros
     public int update(ContentValues values, String whereClause, String[] whereArgs) {
         return db.update(NOME_TABELA, values, whereClause, whereArgs);
     }
 
-    //DELETA
+    //DELETE de tabela
     public int delete(String whereClause, String[] whereArgs) {
         return db.delete(NOME_TABELA, whereClause, whereArgs);
     }
