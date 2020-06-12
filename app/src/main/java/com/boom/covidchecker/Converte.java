@@ -42,7 +42,7 @@ public class Converte {
         return item;
     }
 
-    public static Item cursorToitem(Cursor cursor) {
+    public static Item cursorToItem(Cursor cursor) {
         Item item = new Item();
 
         item.setId(cursor.getLong(cursor.getColumnIndex(BdTableItems._ID)));

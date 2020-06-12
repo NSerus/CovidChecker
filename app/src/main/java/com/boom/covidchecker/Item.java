@@ -6,6 +6,7 @@ public class Item {
     private long id = -1;
     private String conteudo;
     private long idCategoria = -1;
+    private String categoria = null;
 
     public long getId() {
         return id;
@@ -29,5 +30,13 @@ public class Item {
 
     public void setIdCategoria(long idCategoria) {
         this.idCategoria = idCategoria;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 }

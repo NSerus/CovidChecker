@@ -200,7 +200,7 @@ public class BdItemsTest {
         assertEquals(1, cursor.getCount());
 
         assertTrue(cursor.moveToNext());
-        Item item = Converte.cursorToitem(cursor);
+        Item item = Converte.cursorToItem(cursor);
         cursor.close();
 
         assertEquals("O silêncio dos inocentes", item.getConteudo());
