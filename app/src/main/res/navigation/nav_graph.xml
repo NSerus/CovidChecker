@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/checklistFragment2">
+    <fragment
+        android:id="@+id/checklistFragment2"
+        android:name="com.boom.covidchecker.ChecklistFragment"
+        android:label="ChecklistFragment" >
+        <action
+            android:id="@+id/action_checklistFragment2_to_itemUpdateFragment"
+            app:destination="@id/itemUpdateFragment" />
+        <action
+            android:id="@+id/action_checklistFragment2_to_itemAddFragment"
+            app:destination="@id/itemAddFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemAddFragment"
+        android:name="com.boom.covidchecker.ItemAddFragment"
+        android:label="fragment_item_add"
+        tools:layout="@layout/fragment_item_add" >
+        <action
+            android:id="@+id/action_itemAddFragment_to_checklistFragment2"
+            app:destination="@id/checklistFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemUpdateFragment"
+        android:name="com.boom.covidchecker.ItemUpdateFragment"
+        android:label="fragment_item_update"
+        tools:layout="@layout/fragment_item_update" >
+        <action
+            android:id="@+id/action_itemUpdateFragment_to_checklistFragment2"
+            app:destination="@id/checklistFragment2" />
+        <argument
+            android:name="idItem"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 </navigation>
