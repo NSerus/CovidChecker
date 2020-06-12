@@ -34,41 +34,41 @@ public class BdItemsOpenHelper extends SQLiteOpenHelper {
         BdTableCategorias tabelaCategorias = new BdTableCategorias(db);
 
         Categoria categoria = new Categoria();
-        categoria.setDescricao("Ação");
-        long idCatAcao = tabelaCategorias.insert(Converte.categoriaToContentValues(categoria));
+        categoria.setDescricao("Prog. avançada");
+        long idCatProg = tabelaCategorias.insert(Converte.categoriaToContentValues(categoria));
 
         categoria = new Categoria();
-        categoria.setDescricao("Terror");
-        long idCatTerror = tabelaCategorias.insert(Converte.categoriaToContentValues(categoria));
+        categoria.setDescricao("Mota");
+        long idCatMota = tabelaCategorias.insert(Converte.categoriaToContentValues(categoria));
 
         categoria = new Categoria();
-        categoria.setDescricao("Mistério");
-        long idCatMisterio = tabelaCategorias.insert(Converte.categoriaToContentValues(categoria));
+        categoria.setDescricao("Arco");
+        long idCatArco = tabelaCategorias.insert(Converte.categoriaToContentValues(categoria));
 
         categoria = new Categoria();
-        categoria.setDescricao("Sci-fi");
-        tabelaCategorias.insert(Converte.categoriaToContentValues(categoria));
+        categoria.setDescricao("Arquitetura");
+        long idCatArquitetura = tabelaCategorias.insert(Converte.categoriaToContentValues(categoria));
 
         BdTableItems tabelaitems = new BdTableItems(db);
 
         Item item = new Item();
-        item.setConteudo("Lua vermelha");
-        item.setIdCategoria(idCatAcao);
+        item.setConteudo("arranjar base dados");
+        item.setIdCategoria(idCatProg);
         tabelaitems.insert(Converte.itemToContentValues(item));
 
         item = new Item();
-        item.setConteudo("O sobrevivente");
-        item.setIdCategoria(idCatAcao);
+        item.setConteudo("Limpar carburador");
+        item.setIdCategoria(idCatMota);
         tabelaitems.insert(Converte.itemToContentValues(item));
 
         item = new Item();
-        item.setConteudo("O intruso");
-        item.setIdCategoria(idCatTerror);
+        item.setConteudo("treinar posição de tiro");
+        item.setIdCategoria(idCatArco);
         tabelaitems.insert(Converte.itemToContentValues(item));
 
         item = new Item();
-        item.setConteudo("O mistério do quarto secreto");
-        item.setIdCategoria(idCatMisterio);
+        item.setConteudo("arquitetar");
+        item.setIdCategoria(idCatArquitetura);
         tabelaitems.insert(Converte.itemToContentValues(item));
     }
 
