@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/checklistFragment2">
+    app:startDestination="@id/checklistFragment">
     <fragment
-        android:id="@+id/checklistFragment2"
+        android:id="@+id/checklistFragment"
         android:name="com.boom.covidchecker.ChecklistFragment"
         android:label="ChecklistFragment" >
         <action
-            android:id="@+id/action_checklistFragment2_to_itemUpdateFragment"
+            android:id="@+id/action_update_item"
             app:destination="@id/itemUpdateFragment" />
         <action
-            android:id="@+id/action_checklistFragment2_to_itemAddFragment"
+            android:id="@+id/action_add_item"
             app:destination="@id/itemAddFragment" />
     </fragment>
     <fragment
@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_item_add" >
         <action
             android:id="@+id/action_itemAddFragment_to_checklistFragment2"
-            app:destination="@id/checklistFragment2" />
+            app:destination="@id/checklistFragment" />
     </fragment>
     <fragment
         android:id="@+id/itemUpdateFragment"
@@ -31,7 +31,7 @@
         tools:layout="@layout/fragment_item_update" >
         <action
             android:id="@+id/action_itemUpdateFragment_to_checklistFragment2"
-            app:destination="@id/checklistFragment2" />
+            app:destination="@id/checklistFragment" />
         <argument
             android:name="idItem"
             app:argType="integer"

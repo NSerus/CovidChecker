@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -47,27 +48,28 @@ public class ChecklistFragment extends Fragment  implements LoaderManager.Loader
 
     private void alteraLivro() {
         NavController navController = NavHostFragment.findNavController(ChecklistFragment.this);
-        navController.navigate(R.id.action_alterar_item);
+        navController.navigate(R.id.action_update_item);
     }
 
     private void novoLivro() {
-        NavController navController = NavHostFragment.findNavController(ListaLivrosFragment.this);
-        navController.navigate(R.id.action_novo_livro);
+        NavController navController = NavHostFragment.findNavController(ChecklistFragment.this);
+        navController.navigate(R.id.action_add_item);
     }
 
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        return null;
+
+        return new CursorLoader(getContext(), ItemsContentProvider.ENDERECO_ITEMS, BdTableItems.TODOS_CAMPOS, null, null, BdTableItems.CAMPO_CONTEUDO);
     }
 
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-
+        adaptadorItems.setCursor(data);
     }
 
     @Override
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
-
+        adaptadorItems.setCursor(null);
     }
 }
