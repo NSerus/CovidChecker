@@ -9,6 +9,10 @@ public class BdTableCategorias implements BaseColumns {
     public static final String NOME_TABELA = "categorias";
 
     public static final String CAMPO_DESCRICAO = "descricao";
+
+    public static final String CAMPO_ID_COMPLETO = NOME_TABELA + "." + _ID;
+    public static final String CAMPO_DESCRICAO_COMPLETO = NOME_TABELA + "." +CAMPO_DESCRICAO;
+
     public static final String[] TODOS_CAMPOS = {_ID, CAMPO_DESCRICAO};
 
     private SQLiteDatabase db;

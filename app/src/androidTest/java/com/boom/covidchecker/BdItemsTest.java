@@ -123,11 +123,11 @@ public class BdItemsTest {
         BdTableCategorias tabelaCategorias = new BdTableCategorias(bditems);
 
         Categoria categoria = new Categoria();
-        categoria.setDescricao("Romanc");
+        categoria.setDescricao("Est");
 
         long id = insereCategoria(tabelaCategorias, categoria);
 
-        categoria.setDescricao("Romance");
+        categoria.setDescricao("Estudo");
         int registosAfetados = tabelaCategorias.update(Converte.categoriaToContentValues(categoria), BdTableCategorias._ID + "=?", new String[]{String.valueOf(id)});
         assertEquals(1, registosAfetados);
 
@@ -152,7 +152,7 @@ public class BdItemsTest {
     }
 
     @Test
-    public void consegueInseriritems() {
+    public void consegueInserirItems() {
         Context appContext = getTargetContext();
 
         BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
@@ -164,7 +164,7 @@ public class BdItemsTest {
     }
 
     @Test
-    public void consegueLeritems() {
+    public void consegueLerItems() {
         Context appContext = getTargetContext();
 
         BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
@@ -176,7 +176,7 @@ public class BdItemsTest {
         int registos = cursor.getCount();
         cursor.close();
 
-        insereitem(bditems, "O silêncio dos inocentes", "Thriller");
+        insereitem(bditems, "Rocking", "Rock");
 
         cursor = tabelaitems.query(BdTableItems.TODOS_CAMPOS, null, null, null, null, null);
         assertEquals(registos + 1, cursor.getCount());
@@ -192,7 +192,7 @@ public class BdItemsTest {
         BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
         SQLiteDatabase bditems = openHelper.getWritableDatabase();
 
-        long iditem = insereitem(bditems, "O silêncio dos inocentes", "Thriller");
+        long iditem = insereitem(bditems, "shootin", "Guns");
 
         BdTableItems tabelaitems = new BdTableItems(bditems);
 
@@ -203,9 +203,9 @@ public class BdItemsTest {
         Item item = Converte.cursorToItem(cursor);
         cursor.close();
 
-        assertEquals("O silêncio dos inocentes", item.getConteudo());
+        assertEquals("shootin", item.getConteudo());
 
-        item.setConteudo("O mistério do quarto secreto");
+        item.setConteudo("Shooting");
         int registosAfetados = tabelaitems.update(Converte.itemToContentValues(item), BdTableItems._ID + "=?", new String[]{String.valueOf(item.getId())});
         assertEquals(1, registosAfetados);
 
@@ -219,7 +219,7 @@ public class BdItemsTest {
         BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
         SQLiteDatabase bditems = openHelper.getWritableDatabase();
 
-        long id = insereitem(bditems, "O silêncio dos inocentes", "Thriller");
+        long id = insereitem(bditems, "shootin", "Guns");
 
         BdTableItems tabelaitems = new BdTableItems(bditems);
         int registosEliminados = tabelaitems.delete(BdTableItems._ID + "=?", new String[]{String.valueOf(id)});

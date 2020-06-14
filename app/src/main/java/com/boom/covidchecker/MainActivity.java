@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,6 +15,8 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
+
+    private Fragment fragmentActual = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,5 +71,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
+    }
+
+   
+    private boolean processaOpcoesMenuListaItems(int id) {
+        ChecklistFragment listaItemsFragment = (ChecklistFragment) fragmentActual;
+
+        if (id == R.id.action_add_item) {
+            listaItemsFragment.novoItem();
+            return true;
+        } else if (id == R.id.action_update_item) {
+            listaItemsFragment.alteraItem();
+            return true;
+        }
+
+        return false;
     }
 }

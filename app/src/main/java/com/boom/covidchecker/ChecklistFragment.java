@@ -46,12 +46,12 @@ public class ChecklistFragment extends Fragment  implements LoaderManager.Loader
         LoaderManager.getInstance(this).initLoader(ID_CURSOR_LOADER_ITEMS, null, this);
     }
 
-    private void alteraLivro() {
+    public void alteraItem() {
         NavController navController = NavHostFragment.findNavController(ChecklistFragment.this);
         navController.navigate(R.id.action_update_item);
     }
 
-    private void novoLivro() {
+    public void novoItem() {
         NavController navController = NavHostFragment.findNavController(ChecklistFragment.this);
         navController.navigate(R.id.action_add_item);
     }
