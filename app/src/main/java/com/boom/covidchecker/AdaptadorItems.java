@@ -54,20 +54,20 @@ public class AdaptadorItems extends RecyclerView.Adapter<AdaptadorItems.ViewHold
     public class ViewHolderItem extends RecyclerView.ViewHolder {
         private Item item = null;
 
-        private EditText editTextConteudo;
+        private TextView TextViewConteudo;
         private TextView textViewCategoria;
 
         public ViewHolderItem(@NonNull View itemView) {
             super(itemView);
 
-            editTextConteudo = (EditText) itemView.findViewById(R.id.editTextConteudo);
+            TextViewConteudo = (TextView) itemView.findViewById(R.id.TextViewConteudo);
             textViewCategoria = (TextView)itemView.findViewById(R.id.TextViewCategoria);
         }
 
         public void setItem(Item item) {
             this.item = item;
 
-            editTextConteudo.setText(item.getConteudo());
+            TextViewConteudo.setText(item.getConteudo());
             textViewCategoria.setText(String.valueOf(item.getCategoria()));
         }
     }

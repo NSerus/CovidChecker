@@ -48,6 +48,7 @@ public class Converte {
         item.setId(cursor.getLong(cursor.getColumnIndex(BdTableItems._ID)));
         item.setConteudo(cursor.getString(cursor.getColumnIndex(BdTableItems.CAMPO_CONTEUDO)));
         item.setIdCategoria(cursor.getLong(cursor.getColumnIndex(BdTableItems.CAMPO_ID_CATEGORIA)));
+        item.setCategoria(cursor.getString(cursor.getColumnIndex(BdTableItems.CAMPO_CATEGORIA)));
 
         return item;
     }
