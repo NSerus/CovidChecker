@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,15 +27,13 @@ public class AdaptadorItems extends RecyclerView.Adapter<AdaptadorItems.ViewHold
         this.context = context;
     }
 
-
     @NonNull
     @Override
     public ViewHolderItem onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemItem = LayoutInflater.from(context).inflate(R.layout.item_only, parent, false);
+        View itemIteme = LayoutInflater.from(context).inflate(R.layout.item_only, parent, false);
 
-        return new ViewHolderItem(itemItem);
+        return new ViewHolderItem(itemIteme);
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderItem holder, int position) {
@@ -43,11 +42,6 @@ public class AdaptadorItems extends RecyclerView.Adapter<AdaptadorItems.ViewHold
         holder.setItem(item);
     }
 
-    /**
-     * Returns the total number of items in the data set held by the adapter.
-     *
-     * @return The total number of items in this adapter.
-     */
     @Override
     public int getItemCount() {
         if(cursor == null) {
@@ -60,13 +54,13 @@ public class AdaptadorItems extends RecyclerView.Adapter<AdaptadorItems.ViewHold
     public class ViewHolderItem extends RecyclerView.ViewHolder {
         private Item item = null;
 
-        private TextView editTextConteudo;
+        private EditText editTextConteudo;
         private TextView textViewCategoria;
 
         public ViewHolderItem(@NonNull View itemView) {
             super(itemView);
 
-            editTextConteudo = (TextView)itemView.findViewById(R.id.editTextConteudo);
+            editTextConteudo = (EditText) itemView.findViewById(R.id.editTextConteudo);
             textViewCategoria = (TextView)itemView.findViewById(R.id.TextViewCategoria);
         }
 

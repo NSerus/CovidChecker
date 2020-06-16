@@ -27,7 +27,7 @@ public class Converte {
         ContentValues valores = new ContentValues();
 
         valores.put(BdTableItems.CAMPO_CONTEUDO, item.getConteudo());
-        valores.put(BdTableItems.CAMPO_CATEGORIA, item.getIdCategoria());
+        valores.put(BdTableItems.CAMPO_ID_CATEGORIA, item.getIdCategoria());
 
         return valores;
     }
@@ -37,7 +37,7 @@ public class Converte {
 
         item.setId(valores.getAsLong(BdTableItems._ID));
         item.setConteudo(valores.getAsString(BdTableItems.CAMPO_CONTEUDO));
-        item.setIdCategoria(valores.getAsLong(BdTableItems.CAMPO_CATEGORIA));
+        item.setIdCategoria(valores.getAsLong(BdTableItems.CAMPO_ID_CATEGORIA));
 
         return item;
     }
@@ -47,7 +47,7 @@ public class Converte {
 
         item.setId(cursor.getLong(cursor.getColumnIndex(BdTableItems._ID)));
         item.setConteudo(cursor.getString(cursor.getColumnIndex(BdTableItems.CAMPO_CONTEUDO)));
-        item.setIdCategoria(cursor.getLong(cursor.getColumnIndex(BdTableItems.CAMPO_CATEGORIA)));
+        item.setIdCategoria(cursor.getLong(cursor.getColumnIndex(BdTableItems.CAMPO_ID_CATEGORIA)));
 
         return item;
     }

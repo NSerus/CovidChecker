@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,11 +25,8 @@ public class ChecklistFragment extends Fragment  implements LoaderManager.Loader
 
     private AdaptadorItems adaptadorItems;
 
-
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_checklist, container, false);
     }
@@ -35,6 +34,10 @@ public class ChecklistFragment extends Fragment  implements LoaderManager.Loader
         super.onViewCreated(view, savedInstanceState);
 
         Context context = getContext();
+
+        MainActivity activity = (MainActivity) getActivity();
+        activity.setFragmentActual(this);
+        activity.setMenuActual(R.menu.drawer_menu);
 
         RecyclerView recyclerViewItems = (RecyclerView) view.findViewById(R.id.RecyclerViewItems);
         adaptadorItems = new AdaptadorItems(context);
@@ -66,6 +69,7 @@ public class ChecklistFragment extends Fragment  implements LoaderManager.Loader
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
         adaptadorItems.setCursor(data);
+
     }
 
     @Override

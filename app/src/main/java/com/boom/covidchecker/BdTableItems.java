@@ -35,8 +35,8 @@ public class BdTableItems implements BaseColumns {
         db.execSQL("CREATE TABLE " + NOME_TABELA + "(" +
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 CAMPO_CONTEUDO + " TEXT NOT NULL," +
-                CAMPO_CATEGORIA + " INTEGER NOT NULL," +
-                "FOREIGN KEY (" + CAMPO_CATEGORIA + ") REFERENCES " +
+                CAMPO_ID_CATEGORIA + " INTEGER NOT NULL," +
+                "FOREIGN KEY (" + CAMPO_ID_CATEGORIA + ") REFERENCES " +
                 BdTableCategorias.NOME_TABELA + "("+ BdTableCategorias._ID + ")" +
                 ")");
     }

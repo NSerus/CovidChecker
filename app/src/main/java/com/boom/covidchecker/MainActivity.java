@@ -17,6 +17,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
 
     private Fragment fragmentActual = null;
+    private int menuActual = R.menu.drawer_menu;
+
+    public void setFragmentActual(Fragment fragmentActual) {
+        this.fragmentActual = fragmentActual;
+    }
+
+    public void setMenuActual(int menuActual) {
+        if (menuActual != this.menuActual) {
+            this.menuActual = menuActual;
+            invalidateOptionsMenu();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-   
+
     private boolean processaOpcoesMenuListaItems(int id) {
         ChecklistFragment listaItemsFragment = (ChecklistFragment) fragmentActual;
 

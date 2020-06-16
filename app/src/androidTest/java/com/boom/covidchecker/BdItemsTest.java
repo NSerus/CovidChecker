@@ -186,7 +186,7 @@ public class BdItemsTest {
     }
 
     @Test
-    public void consegueAlteraritems() {
+    public void     consegueAlteraritems() {
         Context appContext = getTargetContext();
 
         BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
@@ -196,7 +196,7 @@ public class BdItemsTest {
 
         BdTableItems tabelaitems = new BdTableItems(bditems);
 
-        Cursor cursor = tabelaitems.query(BdTableItems.TODOS_CAMPOS, BdTableItems._ID + "=?", new String[]{ String.valueOf(iditem) }, null, null, null);
+        Cursor cursor = tabelaitems.query(BdTableItems.TODOS_CAMPOS, BdTableItems.CAMPO_ID_COMPLETO + "=?", new String[]{ String.valueOf(iditem) }, null, null, null);
         assertEquals(1, cursor.getCount());
 
         assertTrue(cursor.moveToNext());
