@@ -5,6 +5,7 @@
     tools:ShowIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_checklist"
             android:icon="@drawable/ic_check_24dp"
@@ -27,6 +28,19 @@
             android:id="@+id/nav_info"
             android:icon="@drawable/ic_info_24dp"
             android:title="Information" />
+
+        <item
+            android:id="@+id/nav_alterar_item"
+            android:icon="@drawable/ic_baseline_edit_24"
+            android:title="Editar item"
+            android:visible="false" />
+        <item
+            android:id="@+id/nav_eliminar_item"
+            android:icon="@drawable/ic_baseline_delete_outline_24"
+            android:orderInCategory="102"
+            android:title="Eliminar"
+            android:visible="false" />
+
     </group>
 
 

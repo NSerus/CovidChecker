@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
 
     private Fragment fragmentActual = null;
-    private int menuActual = R.menu.drawer_menu;
+    private int menuActual = R.menu.menu_checklist;
 
     public void setFragmentActual(Fragment fragmentActual) {
         this.fragmentActual = fragmentActual;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -84,16 +86,64 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(menuActual, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (menuActual == R.menu.menu_checklist) {
+            if (processaOpcoesMenuListaItems(id)) return true;
+        } else if (menuActual == R.menu.menu_add_item) {
+            if (processaOpcoesMenuInserirItem(id)) return true;
+        }else if (menuActual == R.menu.menu_edit_only) {
+            if (processaOpcoesMenuEditarItem(id)) return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private boolean processaOpcoesMenuEditarItem(int id) {
+        ItemAddFragment adicionarLivroFragment = (ItemAddFragment) fragmentActual;
+
+        if (id == R.id.action_alterar_item) {
+            adicionarLivroFragment.guardar();
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean processaOpcoesMenuInserirItem(int id) {
+        ItemAddFragment adicionarLivroFragment = (ItemAddFragment) fragmentActual;
+
+        if (id == R.id.action_guardar) {
+            adicionarLivroFragment.guardar();
+            return true;
+        }
+
+        return false;
+    }
 
     private boolean processaOpcoesMenuListaItems(int id) {
         ChecklistFragment listaItemsFragment = (ChecklistFragment) fragmentActual;
 
-        if (id == R.id.action_add_item) {
-            listaItemsFragment.novoItem();
+        if (id == R.id.action_inserir_item) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItemAddFragment()).commit();
+
             return true;
-        } else if (id == R.id.action_update_item) {
+        } else if (id == R.id.nav_alterar_item) {
             listaItemsFragment.alteraItem();
+            return true;
+        } else if (id == R.id.nav_eliminar_item) {
             return true;
         }
 

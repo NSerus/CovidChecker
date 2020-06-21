@@ -7,7 +7,8 @@
     <fragment
         android:id="@+id/checklistFragment"
         android:name="com.boom.covidchecker.ChecklistFragment"
-        android:label="ChecklistFragment" >
+        android:label="ChecklistFragment"
+        tools:layout="@layout/fragment_checklist">
         <action
             android:id="@+id/action_update_item"
             app:destination="@id/itemUpdateFragment" />

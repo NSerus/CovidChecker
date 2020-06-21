@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="pt.ipg.livros.MainActivity">
+    <item
+        android:id="@+id/action_inserir_item"
+        android:icon="@drawable/ic_baseline_add_24"
+        android:orderInCategory="100"
+        android:title="Inserir"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_alterar_item"
+        android:icon="@drawable/ic_baseline_edit_24"
+        android:orderInCategory="101"
+        android:title="Alterar"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_eliminar_item"
+        android:icon="@drawable/ic_baseline_delete_outline_24"
+        android:orderInCategory="102"
+        android:title="Eliminar"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
+</menu>

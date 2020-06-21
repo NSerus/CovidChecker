@@ -13,7 +13,7 @@ public class BdTableItems implements BaseColumns {
     public static final String NOME_TABELA = "items";
 
 
-    //todo: adicionar uma data como parametro
+    //todo: adicionar uma data e bool do checklist como parametro
 
     public static final String CAMPO_CONTEUDO = "conteudo";
     public static final String CAMPO_ID_CATEGORIA = "id_categoria";
@@ -23,6 +23,7 @@ public class BdTableItems implements BaseColumns {
     public static final String CAMPO_CONTEUDO_COMPLETO = NOME_TABELA + "." + CAMPO_CONTEUDO;
     public static final String CAMPO_ID_CATEGORIA_COMPLETO = NOME_TABELA + "." + CAMPO_ID_CATEGORIA;
     public static final String CAMPO_CATEGORIA_COMPLETO = BdTableCategorias.CAMPO_DESCRICAO_COMPLETO + " AS " + CAMPO_CATEGORIA;
+
     public static final String[] TODOS_CAMPOS = {CAMPO_ID_COMPLETO, CAMPO_CONTEUDO_COMPLETO, CAMPO_ID_CATEGORIA_COMPLETO, CAMPO_CATEGORIA_COMPLETO};
 
     private SQLiteDatabase db;

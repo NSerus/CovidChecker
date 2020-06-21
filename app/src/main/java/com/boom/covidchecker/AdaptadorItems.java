@@ -50,8 +50,9 @@ public class AdaptadorItems extends RecyclerView.Adapter<AdaptadorItems.ViewHold
 
         return cursor.getCount();
     }
+private ViewHolderItem viewHolderItemSelecionado = null;
 
-    public class ViewHolderItem extends RecyclerView.ViewHolder {
+    public class ViewHolderItem extends RecyclerView.ViewHolder implements View.OnClickListener{
         private Item item = null;
 
         private TextView TextViewConteudo;
@@ -62,6 +63,8 @@ public class AdaptadorItems extends RecyclerView.Adapter<AdaptadorItems.ViewHold
 
             TextViewConteudo = (TextView) itemView.findViewById(R.id.TextViewConteudo);
             textViewCategoria = (TextView)itemView.findViewById(R.id.TextViewCategoria);
+
+            itemView.setOnClickListener(this);
         }
 
         public void setItem(Item item) {
@@ -70,5 +73,28 @@ public class AdaptadorItems extends RecyclerView.Adapter<AdaptadorItems.ViewHold
             TextViewConteudo.setText(item.getConteudo());
             textViewCategoria.setText(String.valueOf(item.getCategoria()));
         }
+
+        @Override
+        public void onClick(View v) {
+            if (viewHolderItemSelecionado == this) {
+                return;
+            }
+
+            if (viewHolderItemSelecionado != null) {
+                viewHolderItemSelecionado.desSeleciona();
+            }
+
+            viewHolderItemSelecionado = this;
+            seleciona();
+        }
+
+        private void seleciona() {
+            itemView.setBackgroundResource(R.color.colorAccent);
+        }
+
+        private void desSeleciona() {
+            itemView.setBackgroundResource(android.R.color.white);
+        }
+        }
     }
-}
+

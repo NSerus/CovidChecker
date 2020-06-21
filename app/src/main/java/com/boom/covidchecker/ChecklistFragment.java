@@ -37,7 +37,7 @@ public class ChecklistFragment extends Fragment  implements LoaderManager.Loader
 
         MainActivity activity = (MainActivity) getActivity();
         activity.setFragmentActual(this);
-        activity.setMenuActual(R.menu.drawer_menu);
+        activity.setMenuActual(R.menu.menu_checklist);
 
         RecyclerView recyclerViewItems = (RecyclerView) view.findViewById(R.id.RecyclerViewItems);
         adaptadorItems = new AdaptadorItems(context);
@@ -55,6 +55,7 @@ public class ChecklistFragment extends Fragment  implements LoaderManager.Loader
     }
 
     public void novoItem() {
+
         NavController navController = NavHostFragment.findNavController(ChecklistFragment.this);
         navController.navigate(R.id.action_add_item);
     }
