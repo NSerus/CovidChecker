@@ -80,9 +80,7 @@ public class ItemAddFragment extends Fragment implements LoaderManager.LoaderCal
         try {
             getActivity().getContentResolver().insert(ItemsContentProvider.ENDERECO_ITEMS, Converte.itemToContentValues(item));
             Toast.makeText(getContext(), "Item adicionado com sucesso", Toast.LENGTH_SHORT).show();
-            NavController navController = NavHostFragment.findNavController(ItemAddFragment.this);
-            navController.navigate(R.id.action_itemAddFragment_to_checklistFragment2);
-        } catch (Exception e) {
+                   } catch (Exception e) {
             Snackbar.make(editTextConteudo, "Erro: Não foi possível criar o item", Snackbar.LENGTH_INDEFINITE).show();
         }
     }

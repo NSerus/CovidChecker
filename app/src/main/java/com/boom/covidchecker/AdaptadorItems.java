@@ -50,6 +50,13 @@ public class AdaptadorItems extends RecyclerView.Adapter<AdaptadorItems.ViewHold
 
         return cursor.getCount();
     }
+
+    public Item getLivroSelecionado() {
+        if (viewHolderItemSelecionado == null) return null;
+
+        return viewHolderItemSelecionado.item;
+    }
+
 private ViewHolderItem viewHolderItemSelecionado = null;
 
     public class ViewHolderItem extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -86,6 +93,9 @@ private ViewHolderItem viewHolderItemSelecionado = null;
 
             viewHolderItemSelecionado = this;
             seleciona();
+
+            MainActivity activity = (MainActivity) AdaptadorItems.this.context;
+            activity.AtualizaOpcoesMenuChecklist();
         }
 
         private void seleciona() {

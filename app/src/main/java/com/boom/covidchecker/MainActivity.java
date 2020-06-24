@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private Fragment fragmentActual = null;
     private int menuActual = R.menu.menu_checklist;
+    private Menu menu;
 
     public void setFragmentActual(Fragment fragmentActual) {
         this.fragmentActual = fragmentActual;
@@ -29,6 +30,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             this.menuActual = menuActual;
             invalidateOptionsMenu();
         }
+    }
+
+    public void AtualizaOpcoesMenuChecklist() {
+        ChecklistFragment checklistFragment = (ChecklistFragment) fragmentActual;
+
+        Item item = checklistFragment.getItemSelecionado();
+
+        boolean mostraEditarEliminar = (item != null);
+
+        menu.findItem(R.id.action_alterar_item).setVisible(mostraEditarEliminar);
+        menu.findItem(R.id.action_eliminar_item).setVisible(mostraEditarEliminar);
     }
 
     @Override
@@ -90,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(menuActual, menu);
+
+        this.menu = menu;
         return true;
     }
 
@@ -112,10 +126,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private boolean processaOpcoesMenuEditarItem(int id) {
-        ItemAddFragment adicionarLivroFragment = (ItemAddFragment) fragmentActual;
 
         if (id == R.id.action_alterar_item) {
-            adicionarLivroFragment.guardar();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItemUpdateFragment()).commit();
             return true;
         }
 
@@ -123,10 +136,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private boolean processaOpcoesMenuInserirItem(int id) {
-        ItemAddFragment adicionarLivroFragment = (ItemAddFragment) fragmentActual;
+        ItemAddFragment adicionarItemFragment = (ItemAddFragment) fragmentActual;
 
         if (id == R.id.action_guardar) {
-            adicionarLivroFragment.guardar();
+            adicionarItemFragment.guardar();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChecklistFragment()).commit();
             return true;
         }
 
