@@ -25,9 +25,7 @@ public class ChecklistFragment extends Fragment  implements LoaderManager.Loader
 
     private AdaptadorItems adaptadorItems;
 
-    public Item getItemSelecionado() {
-        return adaptadorItems.getLivroSelecionado();
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

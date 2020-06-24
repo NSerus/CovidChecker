@@ -21,6 +21,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private int menuActual = R.menu.menu_checklist;
     private Menu menu;
 
+    private Item item = null;
+
+    public Item getItem() {
+        return item;
+    }
+
     public void setFragmentActual(Fragment fragmentActual) {
         this.fragmentActual = fragmentActual;
     }
@@ -32,10 +38,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void AtualizaOpcoesMenuChecklist() {
-        ChecklistFragment checklistFragment = (ChecklistFragment) fragmentActual;
-
-        Item item = checklistFragment.getItemSelecionado();
+    public void itemAlterado(Item item){
+        this.item = item;
 
         boolean mostraEditarEliminar = (item != null);
 
@@ -120,9 +124,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (processaOpcoesMenuInserirItem(id)) return true;
         }else if (menuActual == R.menu.menu_edit_only) {
             if (processaOpcoesMenuEditarItem(id)) return true;
+        }else if (menuActual == R.menu.menu_alterar_item) {
+            if (processaOpcoesMenuAlterarItem(id)) return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean processaOpcoesMenuAlterarItem(int id) {
+        ItemUpdateFragment alterarLivroFragment = (ItemUpdateFragment) fragmentActual;
+
+        if (id == R.id.action_guardar) {
+            alterarLivroFragment.guardar();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChecklistFragment()).commit();
+            return true;
+        }
+
+        return false;
     }
 
     private boolean processaOpcoesMenuEditarItem(int id) {
@@ -148,16 +166,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private boolean processaOpcoesMenuListaItems(int id) {
-        ChecklistFragment listaItemsFragment = (ChecklistFragment) fragmentActual;
 
         if (id == R.id.action_inserir_item) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItemAddFragment()).commit();
 
             return true;
-        } else if (id == R.id.nav_alterar_item) {
-            listaItemsFragment.alteraItem();
+        } else if (id == R.id.action_alterar_item) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItemUpdateFragment()).commit();
             return true;
-        } else if (id == R.id.nav_eliminar_item) {
+        } else if (id == R.id.action_eliminar_item) {
             return true;
         }
 
