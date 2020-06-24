@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public Item getItem() {
         return item;
     }
+
 
     public void setFragmentActual(Fragment fragmentActual) {
         this.fragmentActual = fragmentActual;
@@ -46,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         menu.findItem(R.id.action_alterar_item).setVisible(mostraEditarEliminar);
         menu.findItem(R.id.action_eliminar_item).setVisible(mostraEditarEliminar);
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,12 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_solidao:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SolidaoFragment()).commit();
                 break;
-            case R.id.nav_info:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InfoFragment()).commit();
-                break;
-            case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new OptionsFragment()).commit();
-                break;
+
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -132,10 +133,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private boolean processaOpcoesMenuAlterarItem(int id) {
-        ItemUpdateFragment alterarLivroFragment = (ItemUpdateFragment) fragmentActual;
+        ItemUpdateFragment alterarItemFragment = (ItemUpdateFragment) fragmentActual;
 
         if (id == R.id.action_guardar) {
-            alterarLivroFragment.guardar();
+            alterarItemFragment.guardar();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChecklistFragment()).commit();
             return true;
         }

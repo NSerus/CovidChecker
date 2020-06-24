@@ -5,14 +5,16 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+//todo:adaptar direito o string da base dados ao date
 public class AdaptadorItems extends RecyclerView.Adapter<AdaptadorItems.ViewHolderItem> {
+    public static boolean getCheckBox;
     private final Context context;
     private Cursor cursor = null;
 
@@ -53,38 +55,61 @@ public class AdaptadorItems extends RecyclerView.Adapter<AdaptadorItems.ViewHold
 
 
 
-private ViewHolderItem viewHolderItemSelecionado = null;
+    private ViewHolderItem viewHolderItemSelecionado = null;
+
+
 
     public class ViewHolderItem extends RecyclerView.ViewHolder implements View.OnClickListener{
         private Item item = null;
 
+        private TextView TextViewData;
         private TextView TextViewConteudo;
         private TextView textViewCategoria;
 
         public ViewHolderItem(@NonNull View itemView) {
             super(itemView);
 
+            TextViewData = (TextView) itemView.findViewById(R.id.TextViewData);
             TextViewConteudo = (TextView) itemView.findViewById(R.id.TextViewConteudo);
             textViewCategoria = (TextView)itemView.findViewById(R.id.TextViewCategoria);
+
 
             itemView.setOnClickListener(this);
         }
 
+        public void onCheckboxClicked(View view)  {
+            boolean checked = ((CheckBox) view).isChecked();
+
+            Item item = new Item();
+            item.setEstado(Integer.getInteger(Boolean.toString(checked)));
+
+
+
+        }
+
+
         public void setItem(Item item) {
             this.item = item;
 
+            TextViewData.setText(item.getData());
             TextViewConteudo.setText(item.getConteudo());
             textViewCategoria.setText(String.valueOf(item.getCategoria()));
         }
 
         @Override
         public void onClick(View v) {
-            if (viewHolderItemSelecionado == this) {
-                return;
-            }
+
+
+
+
+               if (viewHolderItemSelecionado == this) {
+                   return;
+
+               }
 
             if (viewHolderItemSelecionado != null) {
                 viewHolderItemSelecionado.desSeleciona();
+
             }
 
             viewHolderItemSelecionado = this;

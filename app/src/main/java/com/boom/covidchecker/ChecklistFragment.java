@@ -2,12 +2,15 @@ package com.boom.covidchecker;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.net.sip.SipSession;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,10 +23,13 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 public class ChecklistFragment extends Fragment  implements LoaderManager.LoaderCallbacks<Cursor> {
     public static final int ID_CURSOR_LOADER_ITEMS = 0;
 
     private AdaptadorItems adaptadorItems;
+
 
 
 
@@ -41,26 +47,33 @@ public class ChecklistFragment extends Fragment  implements LoaderManager.Loader
         activity.setFragmentActual(this);
         activity.setMenuActual(R.menu.menu_checklist);
 
+
         RecyclerView recyclerViewItems = (RecyclerView) view.findViewById(R.id.RecyclerViewItems);
         adaptadorItems = new AdaptadorItems(context);
         recyclerViewItems.setAdapter(adaptadorItems);
         recyclerViewItems.setLayoutManager(new LinearLayoutManager(context));
+
+
+
 
         adaptadorItems.setCursor(null);
 
         LoaderManager.getInstance(this).initLoader(ID_CURSOR_LOADER_ITEMS, null, this);
     }
 
-    public void alteraItem() {
-        NavController navController = NavHostFragment.findNavController(ChecklistFragment.this);
-        navController.navigate(R.id.action_update_item);
+
+    public void onCheckboxClicked(View view)  {
+        boolean checked = ((CheckBox) view).isChecked();
+
+        Item item = new Item();
+        item.setEstado(Integer.getInteger(Boolean.toString(checked)));
+
+
+
+
     }
 
-    public void novoItem() {
 
-        NavController navController = NavHostFragment.findNavController(ChecklistFragment.this);
-        navController.navigate(R.id.action_add_item);
-    }
 
     @NonNull
     @Override

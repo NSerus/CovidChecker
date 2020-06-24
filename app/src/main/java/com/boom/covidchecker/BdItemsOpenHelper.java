@@ -12,7 +12,7 @@ public class BdItemsOpenHelper extends SQLiteOpenHelper {
     private static final boolean DESENVOLVIMENTO = true;
 
 
-
+//todo:adicionar date direito
     public BdItemsOpenHelper(@Nullable Context context) {
         super(context, NOME_BASE_DADOS, null, VERSAO_BASE_DADOS);
     }
@@ -53,21 +53,25 @@ public class BdItemsOpenHelper extends SQLiteOpenHelper {
 
         Item item = new Item();
         item.setConteudo("arranjar base dados");
+        item.setData(0);
         item.setIdCategoria(idCatProg);
         tabelaitems.insert(Converte.itemToContentValues(item));
 
         item = new Item();
         item.setConteudo("Limpar carburador");
+        item.setData(1);
         item.setIdCategoria(idCatMota);
         tabelaitems.insert(Converte.itemToContentValues(item));
 
         item = new Item();
         item.setConteudo("treinar posição de tiro");
+        item.setData("22-04-1990");
         item.setIdCategoria(idCatArco);
         tabelaitems.insert(Converte.itemToContentValues(item));
 
         item = new Item();
         item.setConteudo("arquitetar");
+        item.setData(1);
         item.setIdCategoria(idCatArquitetura);
         tabelaitems.insert(Converte.itemToContentValues(item));
     }

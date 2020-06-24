@@ -19,27 +19,6 @@
             android:id="@+id/nav_solidao"
             android:icon="@drawable/ic_person_24dp"
             android:title="Solidao" />
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_settings_24dp"
-            android:title="Settings" />
-
-        <item
-            android:id="@+id/nav_info"
-            android:icon="@drawable/ic_info_24dp"
-            android:title="Information" />
-
-        <item
-            android:id="@+id/nav_alterar_item"
-            android:icon="@drawable/ic_baseline_edit_24"
-            android:title="Editar item"
-            android:visible="false" />
-        <item
-            android:id="@+id/nav_eliminar_item"
-            android:icon="@drawable/ic_baseline_delete_outline_24"
-            android:orderInCategory="102"
-            android:title="Eliminar"
-            android:visible="false" />
 
     </group>
 
