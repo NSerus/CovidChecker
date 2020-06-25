@@ -3,7 +3,7 @@ package com.boom.covidchecker;
 import java.util.Date;
 
 public class Item {
-    private Date data;
+    private String data;
     private long id = -1;
     private String conteudo;
     private long idCategoria = -1;
@@ -25,11 +25,11 @@ public class Item {
         this.conteudo = conteudo;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 

@@ -61,14 +61,14 @@ public class BdItemsTest {
         return insereCategoria(tabelaCategorias, categoria);
     }
 
-    private long insereitem(SQLiteDatabase bditems, String titulo,Integer estado, String descCategoria) {
+    private long insereitem(SQLiteDatabase bditems, String titulo,String data, String descCategoria) {
         BdTableCategorias tabelaCategorias = new BdTableCategorias(bditems);
 
         long idCategoria = insereCategoria(tabelaCategorias, descCategoria);
 
         Item item = new Item();
         item.setConteudo(titulo);
-        item.setEstado(estado);
+        item.setData(data);
         item.setIdCategoria(idCategoria);
 
         BdTableItems tabelaitems = new BdTableItems(bditems);
@@ -159,7 +159,7 @@ public class BdItemsTest {
         BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
         SQLiteDatabase bditems = openHelper.getWritableDatabase();
 
-        insereitem(bditems, "O Intruso",0, "Terror");
+        insereitem(bditems, "O Intruso","2015/05/22", "Terror");
 
         bditems.close();
     }
@@ -177,7 +177,7 @@ public class BdItemsTest {
         int registos = cursor.getCount();
         cursor.close();
 
-        insereitem(bditems, "Rocking",1, "Rock");
+        insereitem(bditems, "Rocking","2015/05/22", "Rock");
 
         cursor = tabelaitems.query(BdTableItems.TODOS_CAMPOS, null, null, null, null, null);
         assertEquals(registos + 1, cursor.getCount());
@@ -193,7 +193,7 @@ public class BdItemsTest {
         BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
         SQLiteDatabase bditems = openHelper.getWritableDatabase();
 
-        long iditem = insereitem(bditems, "shootin",1, "Guns");
+        long iditem = insereitem(bditems, "shootin","2015/05/22", "Guns");
 
         BdTableItems tabelaitems = new BdTableItems(bditems);
 
@@ -220,7 +220,7 @@ public class BdItemsTest {
         BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
         SQLiteDatabase bditems = openHelper.getWritableDatabase();
 
-        long id = insereitem(bditems, "shootin",1, "Guns");
+        long id = insereitem(bditems, "shootin","2015/05/22", "Guns");
 
         BdTableItems tabelaitems = new BdTableItems(bditems);
         int registosEliminados = tabelaitems.delete(BdTableItems._ID + "=?", new String[]{String.valueOf(id)});

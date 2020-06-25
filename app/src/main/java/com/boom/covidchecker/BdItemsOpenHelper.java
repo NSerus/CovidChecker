@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.sql.Date;
+
 public class BdItemsOpenHelper extends SQLiteOpenHelper {
     public static final String NOME_BASE_DADOS = "items.db";
     private static final int VERSAO_BASE_DADOS = 1;
@@ -53,25 +55,25 @@ public class BdItemsOpenHelper extends SQLiteOpenHelper {
 
         Item item = new Item();
         item.setConteudo("arranjar base dados");
-        item.setData(0);
+        item.setData(String.valueOf(Date.valueOf("2015-12-06")));
         item.setIdCategoria(idCatProg);
         tabelaitems.insert(Converte.itemToContentValues(item));
 
         item = new Item();
         item.setConteudo("Limpar carburador");
-        item.setData(1);
+        item.setData(String.valueOf(Date.valueOf("2011-11-01")));
         item.setIdCategoria(idCatMota);
         tabelaitems.insert(Converte.itemToContentValues(item));
 
         item = new Item();
         item.setConteudo("treinar posição de tiro");
-        item.setData("22-04-1990");
+        item.setData(String.valueOf(Date.valueOf("2013-02-07")));
         item.setIdCategoria(idCatArco);
         tabelaitems.insert(Converte.itemToContentValues(item));
 
         item = new Item();
         item.setConteudo("arquitetar");
-        item.setData(1);
+        item.setData(String.valueOf(Date.valueOf("2015-12-06") ));
         item.setIdCategoria(idCatArquitetura);
         tabelaitems.insert(Converte.itemToContentValues(item));
     }

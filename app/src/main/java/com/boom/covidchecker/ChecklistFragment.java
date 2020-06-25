@@ -62,18 +62,6 @@ public class ChecklistFragment extends Fragment  implements LoaderManager.Loader
     }
 
 
-    public void onCheckboxClicked(View view)  {
-        boolean checked = ((CheckBox) view).isChecked();
-
-        Item item = new Item();
-        item.setEstado(Integer.getInteger(Boolean.toString(checked)));
-
-
-
-
-    }
-
-
 
     @NonNull
     @Override

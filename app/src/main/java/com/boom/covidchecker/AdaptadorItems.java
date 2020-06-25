@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 //todo:adaptar direito o string da base dados ao date
 public class AdaptadorItems extends RecyclerView.Adapter<AdaptadorItems.ViewHolderItem> {
-    public static boolean getCheckBox;
     private final Context context;
     private Cursor cursor = null;
 
@@ -77,15 +76,7 @@ public class AdaptadorItems extends RecyclerView.Adapter<AdaptadorItems.ViewHold
             itemView.setOnClickListener(this);
         }
 
-        public void onCheckboxClicked(View view)  {
-            boolean checked = ((CheckBox) view).isChecked();
 
-            Item item = new Item();
-            item.setEstado(Integer.getInteger(Boolean.toString(checked)));
-
-
-
-        }
 
 
         public void setItem(Item item) {

@@ -24,6 +24,9 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 
 public class ItemAddFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
@@ -72,10 +75,13 @@ public class ItemAddFragment extends Fragment implements LoaderManager.LoaderCal
         }
 
         long idCategoria = spinnerCategoria.getSelectedItemId();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        Calendar c = Calendar.getInstance();
 
         Item item = new Item();
         item.setConteudo(conteudo);
         item.setIdCategoria(idCategoria);
+        item.setData(sdf.format(c.getTime()));
 
         try {
             getActivity().getContentResolver().insert(ItemsContentProvider.ENDERECO_ITEMS, Converte.itemToContentValues(item));
