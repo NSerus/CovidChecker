@@ -12,7 +12,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-//todo:adaptar direito o string da base dados ao date
 public class AdaptadorItems extends RecyclerView.Adapter<AdaptadorItems.ViewHolderItem> {
     private final Context context;
     private Cursor cursor = null;

@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.CheckBox;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         boolean mostraEditarEliminar = (item != null);
 
-        menu.findItem(R.id.action_alterar_item).setVisible(mostraEditarEliminar);
+        menu.findItem(R.id.action_save_item).setVisible(mostraEditarEliminar);
         menu.findItem(R.id.action_eliminar_item).setVisible(mostraEditarEliminar);
     }
 
@@ -123,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (processaOpcoesMenuListaItems(id)) return true;
         } else if (menuActual == R.menu.menu_add_item) {
             if (processaOpcoesMenuInserirItem(id)) return true;
-        }else if (menuActual == R.menu.menu_edit_only) {
+        }else if (menuActual == R.menu.menu_covid) {
             if (processaOpcoesMenuEditarItem(id)) return true;
         }else if (menuActual == R.menu.menu_alterar_item) {
             if (processaOpcoesMenuAlterarItem(id)) return true;
@@ -146,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private boolean processaOpcoesMenuEditarItem(int id) {
 
-        if (id == R.id.action_alterar_item) {
+        if (id == R.id.action_save_item) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItemUpdateFragment()).commit();
             return true;
         }
@@ -172,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItemAddFragment()).commit();
 
             return true;
-        } else if (id == R.id.action_alterar_item) {
+        } else if (id == R.id.action_save_item) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItemUpdateFragment()).commit();
             return true;
         } else if (id == R.id.action_eliminar_item) {

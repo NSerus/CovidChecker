@@ -3,10 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_alterar_item"
+        android:id="@+id/action_save_item"
         android:icon="@drawable/ic_baseline_edit_24"
-        android:orderInCategory="101"
+        android:orderInCategory="102"
         android:title="alter"
         android:visible="true"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/app_bar_switch"
+        android:orderInCategory="103"
+        android:title="Switch"
+        app:actionLayout="@layout/switch_item"
+        app:showAsAction="always" />
 </menu>

@@ -12,8 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class CovidFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     @Nullable
@@ -30,7 +28,7 @@ public class CovidFragment extends Fragment implements LoaderManager.LoaderCallb
 
         MainActivity activity = (MainActivity) getActivity();
         activity.setFragmentActual(this);
-        activity.setMenuActual(R.menu.menu_edit_only);
+        activity.setMenuActual(R.menu.menu_covid);
 
 
     }

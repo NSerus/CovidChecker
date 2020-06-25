@@ -14,7 +14,6 @@ public class BdItemsOpenHelper extends SQLiteOpenHelper {
     private static final boolean DESENVOLVIMENTO = true;
 
 
-//todo:adicionar date direito
     public BdItemsOpenHelper(@Nullable Context context) {
         super(context, NOME_BASE_DADOS, null, VERSAO_BASE_DADOS);
     }

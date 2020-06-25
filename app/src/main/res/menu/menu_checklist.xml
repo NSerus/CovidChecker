@@ -9,7 +9,7 @@
         android:title="Inserir"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_alterar_item"
+        android:id="@+id/action_save_item"
         android:icon="@drawable/ic_baseline_edit_24"
         android:orderInCategory="101"
         android:title="Alterar"

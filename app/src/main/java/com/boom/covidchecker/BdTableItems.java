@@ -13,7 +13,6 @@ public class BdTableItems implements BaseColumns {
     public static final String NOME_TABELA = "items";
 
 
-    //todo: adicionar uma data do checklist como parametro
 
     public static final String CAMPO_CONTEUDO = "conteudo";
     public static final String CAMPO_DATA = "data";
