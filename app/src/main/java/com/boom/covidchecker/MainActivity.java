@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ItemUpdateFragment()).commit();
             return true;
         } else if (id == R.id.action_eliminar_item) {
-            return true;
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new EliminateFragment()).commit();
         }
 
         return false;
