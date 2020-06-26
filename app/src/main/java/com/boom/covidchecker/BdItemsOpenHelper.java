@@ -29,6 +29,9 @@ public class BdItemsOpenHelper extends SQLiteOpenHelper {
         BdTableSolidao tabelaSolidao = new BdTableSolidao(db);
         tabelaSolidao.cria();
 
+        BdTableCovid tabelaCovid = new BdTableCovid(db);
+        tabelaCovid.cria();
+
         if (DESENVOLVIMENTO) {
             seedData(db);
         }
@@ -85,6 +88,13 @@ public class BdItemsOpenHelper extends SQLiteOpenHelper {
         solidao.setConteudo("entrada diario nº1");
         solidao.setDataSolidao(String.valueOf(Date.valueOf("2015-12-06")));
         tabelaSolidao.insert(Converte.SolidaoToContentValues(solidao));
+
+        BdTableCovid tabelaCovid = new BdTableCovid(db);
+
+        Covid covid = new Covid();
+        covid.setProgresso(45);
+        covid.setToggle(1);
+        tabelaCovid.insert(Converte.SolidaoToContentValues(solidao));
     }
 
 

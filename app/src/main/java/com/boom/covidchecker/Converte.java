@@ -82,4 +82,31 @@ public class Converte {
 
         return solidao;
     }
+
+    public static ContentValues CovidToContentValues(Covid covid) {
+        ContentValues valores = new ContentValues();
+
+        valores.put(BdTableCovid.CAMPO_PROGRESSO, covid.getProgresso());
+        valores.put(BdTableCovid.CAMPO_TOGGLE, covid.getToggle());
+
+        return valores;
+    }
+    public static Covid contentValuesToCovid(ContentValues valores) {
+        Covid covid = new Covid();
+
+        covid.setId(valores.getAsLong(BdTableCovid._ID));
+        covid.setProgresso(valores.getAsInteger(BdTableCovid.CAMPO_PROGRESSO));
+        covid.setToggle(valores.getAsInteger(BdTableCovid.CAMPO_PROGRESSO));
+
+        return covid;
+    }
+    public static Covid cursorToCovid(Cursor cursor) {
+        Covid covid = new Covid();
+
+        covid.setId(cursor.getLong(cursor.getColumnIndex(BdTableCovid._ID)));
+        covid.setProgresso(cursor.getInt(cursor.getColumnIndex(BdTableCovid.CAMPO_PROGRESSO)));
+        covid.setToggle(cursor.getInt(cursor.getColumnIndex(BdTableCovid.CAMPO_TOGGLE)));
+
+        return covid;
+    }
 }

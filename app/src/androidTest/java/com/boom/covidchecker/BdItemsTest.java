@@ -92,6 +92,18 @@ public class BdItemsTest {
         return  id;
     }
 
+    private long insereitemcovid(SQLiteDatabase bditemcovid, Integer progresso,Integer Toggle) {
+        Covid covid = new Covid();
+        covid.setProgresso(progresso);
+        covid.setToggle(Toggle);
+
+        BdTableCovid tabelaCovid = new BdTableCovid(bditemcovid);
+        long id = tabelaCovid.insert(Converte.CovidToContentValues(covid));
+        assertNotEquals(-1, id);
+
+        return  id;
+    }
+
     @Test
     public void consegueInserirCategorias() {
         Context appContext = getTargetContext();
@@ -241,6 +253,82 @@ public class BdItemsTest {
         assertEquals(1, registosEliminados);
 
         bditemsolidao.close();
+    }
+
+    public void consegueInserirItemsCovid() {
+        Context appContext = getTargetContext();
+
+        BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
+        SQLiteDatabase bditemscovid = openHelper.getWritableDatabase();
+
+        insereitemcovid(bditemscovid, 45,1);
+
+        bditemscovid.close();
+    }
+
+    @Test
+    public void consegueLerItemsCovid() {
+        Context appContext = getTargetContext();
+
+        BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
+        SQLiteDatabase bditemcovid = openHelper.getWritableDatabase();
+
+        BdTableCovid tabelaitemscovid = new BdTableCovid(bditemcovid);
+
+        Cursor cursor = tabelaitemscovid.query(BdTableCovid.TODOS_CAMPOS, null, null, null, null, null);
+        int registos = cursor.getCount();
+        cursor.close();
+
+        insereitemcovid(bditemcovid, 45,1);
+
+        cursor = tabelaitemscovid.query(BdTableCovid.TODOS_CAMPOS, null, null, null, null, null);
+        assertEquals(registos + 1, cursor.getCount());
+        cursor.close();
+
+        bditemcovid.close();
+    }
+
+    @Test
+    public void consegueAlteraritemsCovid() {
+        Context appContext = getTargetContext();
+
+        BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
+        SQLiteDatabase bditemcovid = openHelper.getWritableDatabase();
+
+        long iditem = insereitemcovid(bditemcovid, 45,1);
+
+        BdTableCovid tabelaitems = new BdTableCovid(bditemcovid);
+
+        Cursor cursor = tabelaitems.query(BdTableCovid.TODOS_CAMPOS, BdTableCovid.CAMPO_ID_COMPLETO + "=?", new String[]{ String.valueOf(iditem) }, null, null, null);
+        assertEquals(1, cursor.getCount());
+
+        assertTrue(cursor.moveToNext());
+        Covid item = Converte.cursorToCovid(cursor);
+        cursor.close();
+
+        assertEquals("45", String.valueOf(item.getProgresso()));
+
+        item.setProgresso(45);
+        int registosAfetados = tabelaitems.update(Converte.CovidToContentValues(item), BdTableCovid._ID + "=?", new String[]{String.valueOf(item.getId())});
+        assertEquals(1, registosAfetados);
+
+        bditemcovid.close();
+    }
+
+    @Test
+    public void consegueEliminaritemsCovid() {
+        Context appContext = getTargetContext();
+
+        BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
+        SQLiteDatabase bditemcovid = openHelper.getWritableDatabase();
+
+        long id = insereitemcovid(bditemcovid, 45,1);
+
+        BdTableCovid tabelaitems = new BdTableCovid(bditemcovid);
+        int registosEliminados = tabelaitems.delete(BdTableCovid._ID + "=?", new String[]{String.valueOf(id)});
+        assertEquals(1, registosEliminados);
+
+        bditemcovid.close();
     }
 
     @Test
