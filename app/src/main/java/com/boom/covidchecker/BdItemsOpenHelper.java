@@ -26,6 +26,9 @@ public class BdItemsOpenHelper extends SQLiteOpenHelper {
         BdTableItems tabelaitems = new BdTableItems(db);
         tabelaitems.cria();
 
+        BdTableSolidao tabelaSolidao = new BdTableSolidao(db);
+        tabelaSolidao.cria();
+
         if (DESENVOLVIMENTO) {
             seedData(db);
         }
@@ -75,6 +78,13 @@ public class BdItemsOpenHelper extends SQLiteOpenHelper {
         item.setData(String.valueOf(Date.valueOf("2015-12-06") ));
         item.setIdCategoria(idCatArquitetura);
         tabelaitems.insert(Converte.itemToContentValues(item));
+
+        BdTableSolidao tabelaSolidao = new BdTableSolidao(db);
+
+        Solidao solidao = new Solidao();
+        solidao.setConteudo("entrada diario nº1");
+        solidao.setDataSolidao(String.valueOf(Date.valueOf("2015-12-06")));
+        tabelaSolidao.insert(Converte.SolidaoToContentValues(solidao));
     }
 
 

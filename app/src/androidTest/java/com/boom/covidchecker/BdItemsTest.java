@@ -61,6 +61,8 @@ public class BdItemsTest {
         return insereCategoria(tabelaCategorias, categoria);
     }
 
+
+
     private long insereitem(SQLiteDatabase bditems, String titulo,String data, String descCategoria) {
         BdTableCategorias tabelaCategorias = new BdTableCategorias(bditems);
 
@@ -73,6 +75,18 @@ public class BdItemsTest {
 
         BdTableItems tabelaitems = new BdTableItems(bditems);
         long id = tabelaitems.insert(Converte.itemToContentValues(item));
+        assertNotEquals(-1, id);
+
+        return  id;
+    }
+
+    private long insereitemsolidao(SQLiteDatabase bditemsolidao, String titulo,String data) {
+        Solidao solidao = new Solidao();
+        solidao.setConteudo(titulo);
+        solidao.setDataSolidao(data);
+
+        BdTableSolidao tabelaSolidao = new BdTableSolidao(bditemsolidao);
+        long id = tabelaSolidao.insert(Converte.SolidaoToContentValues(solidao));
         assertNotEquals(-1, id);
 
         return  id;
@@ -150,6 +164,83 @@ public class BdItemsTest {
         assertEquals(1, registosEliminados);
 
         bditems.close();
+    }
+
+    @Test
+    public void consegueInserirItemsSolidao() {
+        Context appContext = getTargetContext();
+
+        BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
+        SQLiteDatabase bditemsolidao = openHelper.getWritableDatabase();
+
+        insereitemsolidao(bditemsolidao, "entrada diario nº1","2015/12/06");
+
+        bditemsolidao.close();
+    }
+
+    @Test
+    public void consegueLerItemsSolidao() {
+        Context appContext = getTargetContext();
+
+        BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
+        SQLiteDatabase bditemsolidao = openHelper.getWritableDatabase();
+
+        BdTableSolidao tabelaitemsolidao = new BdTableSolidao(bditemsolidao);
+
+        Cursor cursor = tabelaitemsolidao.query(BdTableSolidao.TODOS_CAMPOS, null, null, null, null, null);
+        int registos = cursor.getCount();
+        cursor.close();
+
+        insereitemsolidao(bditemsolidao, "Rocking","2015/05/22");
+
+        cursor = tabelaitemsolidao.query(BdTableSolidao.TODOS_CAMPOS, null, null, null, null, null);
+        assertEquals(registos + 1, cursor.getCount());
+        cursor.close();
+
+        bditemsolidao.close();
+    }
+
+    @Test
+    public void consegueAlteraritemsSolidao() {
+        Context appContext = getTargetContext();
+
+        BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
+        SQLiteDatabase bditemsolidao = openHelper.getWritableDatabase();
+
+        long iditem = insereitemsolidao(bditemsolidao, "shootin","2015/05/22");
+
+        BdTableSolidao tabelaitems = new BdTableSolidao(bditemsolidao);
+
+        Cursor cursor = tabelaitems.query(BdTableSolidao.TODOS_CAMPOS, BdTableSolidao.CAMPO_ID_COMPLETO + "=?", new String[]{ String.valueOf(iditem) }, null, null, null);
+        assertEquals(1, cursor.getCount());
+
+        assertTrue(cursor.moveToNext());
+        Solidao item = Converte.cursorToSolidao(cursor);
+        cursor.close();
+
+        assertEquals("shootin", item.getConteudo());
+
+        item.setConteudo("Shooting");
+        int registosAfetados = tabelaitems.update(Converte.SolidaoToContentValues(item), BdTableItems._ID + "=?", new String[]{String.valueOf(item.getId())});
+        assertEquals(1, registosAfetados);
+
+        bditemsolidao.close();
+    }
+
+    @Test
+    public void consegueEliminaritemsSolidao() {
+        Context appContext = getTargetContext();
+
+        BdItemsOpenHelper openHelper = new BdItemsOpenHelper(appContext);
+        SQLiteDatabase bditemsolidao = openHelper.getWritableDatabase();
+
+        long id = insereitemsolidao(bditemsolidao, "shootin","2015/05/22");
+
+        BdTableSolidao tabelaitems = new BdTableSolidao(bditemsolidao);
+        int registosEliminados = tabelaitems.delete(BdTableSolidao._ID + "=?", new String[]{String.valueOf(id)});
+        assertEquals(1, registosEliminados);
+
+        bditemsolidao.close();
     }
 
     @Test

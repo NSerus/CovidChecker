@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private Item item = null;
 
+
+
     public Item getItem() {
         return item;
     }
@@ -86,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_solidao:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SolidaoFragment()).commit();
                 break;
-
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -129,6 +130,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
     private boolean processaOpcoesMenuAlterarItem(int id) {
         ItemUpdateFragment alterarItemFragment = (ItemUpdateFragment) fragmentActual;

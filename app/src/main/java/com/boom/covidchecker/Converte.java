@@ -55,4 +55,31 @@ public class Converte {
 
         return item;
     }
+
+    public static ContentValues SolidaoToContentValues(Solidao solidao) {
+        ContentValues valores = new ContentValues();
+
+        valores.put(BdTableSolidao.CAMPO_CONTEUDO, solidao.getConteudo());
+        valores.put(BdTableSolidao.CAMPO_DATA, solidao.getDataSolidao());
+
+        return valores;
+    }
+    public static Solidao contentValuesToSolidao(ContentValues valores) {
+        Solidao solidao = new Solidao();
+
+        solidao.setId(valores.getAsLong(BdTableSolidao._ID));
+        solidao.setConteudo(valores.getAsString(BdTableSolidao.CAMPO_CONTEUDO));
+        solidao.setDataSolidao(valores.getAsString(BdTableSolidao.CAMPO_DATA));
+
+        return solidao;
+    }
+    public static Solidao cursorToSolidao(Cursor cursor) {
+        Solidao solidao = new Solidao();
+
+        solidao.setId(cursor.getLong(cursor.getColumnIndex(BdTableSolidao._ID)));
+        solidao.setConteudo(cursor.getString(cursor.getColumnIndex(BdTableSolidao.CAMPO_CONTEUDO)));
+        solidao.setDataSolidao(cursor.getString(cursor.getColumnIndex(BdTableSolidao.CAMPO_DATA)));
+
+        return solidao;
+    }
 }
