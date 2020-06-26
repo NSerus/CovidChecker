@@ -126,11 +126,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (processaOpcoesMenuEditarItem(id)) return true;
         }else if (menuActual == R.menu.menu_alterar_item) {
             if (processaOpcoesMenuAlterarItem(id)) return true;
+        }else if (menuActual == R.menu.menu_solidao) {
+            if (processaOpcoesMenuSolidao(id)) return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    private boolean processaOpcoesMenuSolidao(int id) {
+        if (id == R.id.action_guardar) {
+            return true;
+        }
+        if (id == R.id.action_history_item) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DiaryFragment()).commit();
+            return true;
+        }
+        return false;
+    }
 
 
     private boolean processaOpcoesMenuAlterarItem(int id) {
